@@ -1,0 +1,71 @@
+fields:
+
+  urls:
+    type: section
+  sitemap_index_url:
+    type: text
+    default: 'sitemap_index.xml'
+  single_sitemap_url:
+    type: text
+    default: '{alias}-sitemap{page}.xml'
+  trailing_slash_urls:
+    type: toggle
+    default: false
+
+  pagination:
+    type: section
+  max_entires_per_sitemap:
+    type: integer
+    default: 1000
+  show_page_number_if_only_page:
+    type: toggle
+    default: false
+
+  caching:
+    type: section
+  cache_length:
+    type: integer
+    default: 60
+  flush_cache_on_save:
+    type: toggle
+    default: true
+
+  sitemaps:
+    type: section
+
+  max_entires_per_sitemap:
+    type: integer
+    default: 1000
+
+  show_page_sitemap:
+    type: toggle
+    default: true
+  page_sitemap_alias:
+    type: text
+    show_when:
+      show_page_sitemap: true
+
+  collection_sitemaps:
+    mode: table
+    add_row: 'Add Collection Sitemap'
+    fields:
+      collection:
+        type: collections
+        display: Collection
+        max_items: 1
+      alias:
+        type: text
+        display: Alias
+    type: grid
+
+  taxonomy_sitemaps:
+    mode: table
+    add_row: 'Add Taxonomy Sitemap'
+    fields:
+      taxonomy:
+        type: text
+        display: Taxonomy Handle
+      alias:
+        type: text
+        display: Alias
+    type: grid

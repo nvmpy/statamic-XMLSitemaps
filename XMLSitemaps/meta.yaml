@@ -1,0 +1,6 @@
+name: XML Sitemaps
+version: '1.0'
+description: 'Generates XML Sitemaps, mate. Shiny ones, with lots of options. Options like pagination, alias support and automatic selective cache management.'
+developer: 'Benji Hughes'
+developer_url: 'https://benjihughes.co.uk'
+commercial: true

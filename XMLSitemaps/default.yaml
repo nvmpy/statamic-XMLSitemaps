@@ -1,0 +1,9 @@
+cache_length: 60
+flush_cache_on_save: true
+trailing_slash_urls: false
+sitemap_index_url: 'sitemap_index.xml'
+single_sitemap_url: '{alias}-sitemap{page}.xml'
+show_page_sitemap: true
+page_sitemap_alias: 'page'
+max_entires_per_sitemap: 1000
+show_page_number_if_only_page: false
