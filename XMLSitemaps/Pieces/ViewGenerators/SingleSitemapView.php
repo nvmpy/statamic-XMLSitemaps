@@ -120,6 +120,7 @@ class SingleSitemapView {
 	protected function isUrlValidForSitemap( $sitemap ) {
 		$pageWasInUrl                = ( $this->pageInUrl > 0 );
 		$hasPages                    = $sitemap->hasMultiplePages();
+		$pageCount                   = $sitemap->getPageCount();
 		$showPageNumberIfOnlyOnePage = $this->getConfig( 'show_page_number_if_only_page' );
 
 		$hasPageNumberWhenItShouldnt = (
@@ -138,6 +139,10 @@ class SingleSitemapView {
 			|| ( $showPageNumberIfOnlyOnePage && $this->pageInUrl === 0 && ! $hasPages )
 		);
 
-		return ! ( $hasPageNumberWhenItShouldnt || $doesntHavePageNumberWhenItShould );
+		$hasAPageNumberThatDoesntExist = (
+			$this->pageToShow > $pageCount
+		);
+
+		return ! ( $hasPageNumberWhenItShouldnt || $doesntHavePageNumberWhenItShould || $hasAPageNumberThatDoesntExist );
 	}
 }
