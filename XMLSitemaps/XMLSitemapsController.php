@@ -75,7 +75,7 @@ class XMLSitemapsController extends Controller {
 
 		// Returns false if no config found, so we can 404 safe in the knowledge
 		// that they made the URL up. Dummies.
-		$viewCacheKey = $configHelper->makeViewCacheKeyFromAlias( $alias, is_bool($pageInUrl) ? $pageInUrl : 0 );
+		$viewCacheKey = $configHelper->makeViewCacheKeyFromAlias( $alias, !is_bool($pageInUrl) ? $pageInUrl : 0 );
 
 		if ( ! $viewCacheKey ) {
 			abort( 404 );
