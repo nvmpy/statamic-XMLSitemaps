@@ -63,13 +63,17 @@ class XMLSitemapsController extends Controller {
 	 *
 	 * @return mixed
 	 */
-	public function showSitemap( $alias, $pageInUrl = false ) {
+	public function showSitemap( $alias, $pageInUrl = null ) {
 
 		// It'd be nice to be able to 404 here early if we know the page
 		// provided doesn't match up with the config or the amount of
 		// pages a sitemap has, but to do that we'd have to make the
 		// sitemap outside of the cache closure, so it's more efficient
 		// to just continue and let the cache return a 404 for this URL.
+		if ( ! is_null( $pageInUrl ) && ( (int) $pageInUrl === 0 ) ) {
+			abort( 404 );
+		}
+		$pageInUrl = (int) $pageInUrl === 0 ? false : $pageInUrl;
 
 		$configHelper = new XMLSitemapsConfig();
 

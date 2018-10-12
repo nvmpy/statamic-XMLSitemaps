@@ -40,7 +40,7 @@ class SingleSitemapView {
 
 		$this->config    = ( new XMLSitemapsConfig )->getConfigByAlias( $alias );
 		$this->pageInUrl = $pageInUrl;
-		$this->pageToShow= $pageInUrl === 0 ? 1 : (int) $pageInUrl;
+		$this->pageToShow= $pageInUrl === false ? 1 : (int) $pageInUrl;
 
 		$this->xmlHeader = sprintf(
 			'<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="%s"?>',
@@ -118,7 +118,7 @@ class SingleSitemapView {
 	 * @return bool
 	 */
 	protected function isUrlValidForSitemap( $sitemap ) {
-		$pageWasInUrl                = ( $this->pageInUrl > 0 );
+		$pageWasInUrl                = ( $this->pageInUrl !== false );
 		$hasPages                    = $sitemap->hasMultiplePages();
 		$pageCount                   = $sitemap->getPageCount();
 		$showPageNumberIfOnlyOnePage = $this->getConfig( 'show_page_number_if_only_page' );
@@ -136,7 +136,7 @@ class SingleSitemapView {
 
 			// There's no page number in the URL but the setting to use the page
 			// number even if there's only one page is set to yes.
-			|| ( $showPageNumberIfOnlyOnePage && $this->pageInUrl === 0 && ! $hasPages )
+			|| ( $showPageNumberIfOnlyOnePage && $this->pageInUrl === false && ! $hasPages )
 		);
 
 		$hasAPageNumberThatDoesntExist = (
