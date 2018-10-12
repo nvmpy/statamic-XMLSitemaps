@@ -26,7 +26,7 @@ The following URLs are customizable:
     
     Aliases are better explained in the [Sitemaps section](#sitemap-settings).
 
-The **Append Trailing Slash To URLs** setting dictates whether or not the URLs of items within a Sitemap have a trailing slash. It default to off.
+The **Append Trailing Slash To URLs** setting dictates whether or not the URLs of items within a Sitemap have a trailing slash. It defaults to off.
 
 ### Pagination Settings
 
@@ -49,7 +49,7 @@ Generating the Sitemap each time it's requested would be absolutely mental - esp
     
 - **Flush Cache On Content Save**
 
-	Ah, selective cache purging. When true, XML Sitemaps will listen out for any Save actions, and clear out any Sitemaps associated with the piece of content that was saved.
+	When true, XML Sitemaps will listen out for any Save actions, and clear out any Sitemaps associated with that piece of content.
     
  ### Sitemap Settings
  
