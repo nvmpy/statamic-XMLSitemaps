@@ -2,6 +2,8 @@
 
 namespace Statamic\Addons\XMLSitemaps;
 
+use Statamic\API\Collection;
+use Statamic\API\Taxonomy;
 use Statamic\Extend\Extensible;
 
 class XMLSitemapsConfig {
@@ -101,13 +103,28 @@ class XMLSitemapsConfig {
 						continue;
 					}
 
+					switch( $type ){
+						case 'collection':
+							$exists = Collection::handleExists($handle);
+							break;
+						case 'taxonomy':
+							$exists = Taxonomy::handleExists($handle);
+							break;
+						default:
+							$exists = false;
+							break;
+					}
+
+					// Collection or Taxonomy doesn't exist, most likely user
+					// error when entering the Taxonomy handle.
+					if ( !$exists ){
+						continue;
+					}
+
 					// Alias defaults to handle if not set in config.
 					$alias  = array_key_exists( 'alias', $sitemap )
 						? $sitemap['alias']
 						: $handle;
-
-
-
 
 					// All good. Pop that config on the array - lovely stuff.
 					array_push(
