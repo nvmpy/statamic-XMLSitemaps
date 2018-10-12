@@ -19,7 +19,10 @@ trait Paginated {
 
 		$this->currentPage = $page;
 
-		$this->perPage = $this->getConfig( 'max_entires_per_sitemap' );
+		// Should check they haven't set it to -1 or something daft, if they
+		// have just use 1 instead, since it's the lowest we can go.
+		$maxEntries = (int) $this->getConfig( 'max_entires_per_sitemap' );
+		$this->perPage = $maxEntries > 0 ? $maxEntries : 1;
 
 		$itemCount = isset( $this->items ) ? $this->items->count() : 0;
 
